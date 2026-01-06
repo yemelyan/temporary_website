@@ -1,0 +1,229 @@
+---
+---
+
+<footer class="footer">
+	<div class="footer-container">
+		<div class="footer-column">
+			<div class="footer-logo">
+				<span class="logo-icon">🏢</span>
+				<div class="logo-text">
+					<h3 class="logo-title">Riga Temporary Use</h3>
+					<p class="logo-subtitle">Competence Center</p>
+				</div>
+			</div>
+			<p class="footer-description">
+				A pilot initiative by Riga City Council within the IMPETUS project, helping activate vacant properties for community benefit.
+			</p>
+		</div>
+
+		<div class="footer-column">
+			<h3 class="footer-title">Quick Links</h3>
+			<ul class="footer-links">
+				<li><a href="/how-it-works">How It Works</a></li>
+				<li><a href="/places">Places</a></li>
+				<li><a href="/documents">Documents & Resources</a></li>
+				<li><a href="/updates">Latest Updates</a></li>
+			</ul>
+		</div>
+
+		<div class="footer-column">
+			<h3 class="footer-title">Get Involved</h3>
+			<ul class="footer-links">
+				<li><a href="/stakeholder-loop">Join the Stakeholder Loop</a></li>
+				<li><a href="/offer-space">Offer a Pilot Space</a></li>
+				<li><a href="/propose-initiative">Propose an Initiative</a></li>
+				<li><a href="/partner-workspace">Partner Workspace</a></li>
+			</ul>
+		</div>
+
+		<div class="footer-column">
+			<h3 class="footer-title">Contact</h3>
+			<ul class="footer-contact">
+				<li>
+					<span class="contact-icon">✉️</span>
+					<a href="mailto:pad@riga.lv">pad@riga.lv</a>
+				</li>
+				<li>
+					<span class="contact-icon">📞</span>
+					<a href="tel:80001201">80001201</a>
+				</li>
+				<li>
+					<span class="contact-icon">🔗</span>
+					<a href="#" target="_blank" rel="noopener noreferrer">IMPETUS Project</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="footer-bottom">
+		<div class="footer-bottom-content">
+			<p class="copyright">©2025 Riga City Council. Part of the IMPETUS Interreg Europe project.</p>
+			<p class="disclaimer">Disclaimer Co-funded by the European Union</p>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		background: white;
+		border-top: 1px solid #e5e5e5;
+		margin-top: 4rem;
+	}
+
+	.footer-container {
+		max-width: 1400px;
+		margin: 0 auto;
+		padding: 3rem 2rem;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 3rem;
+	}
+
+	.footer-column {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.footer-logo {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+	}
+
+	.logo-icon {
+		font-size: 1.5rem;
+		filter: hue-rotate(180deg) saturate(1.2);
+	}
+
+	.logo-text {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.logo-title {
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: #333;
+		margin: 0 0 0.25rem 0;
+	}
+
+	.logo-subtitle {
+		font-size: 0.9rem;
+		color: #666;
+		margin: 0;
+	}
+
+	.footer-description {
+		font-size: 0.9rem;
+		color: #666;
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.footer-title {
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: #333;
+		margin: 0 0 1rem 0;
+	}
+
+	.footer-links {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.footer-links a {
+		color: #666;
+		text-decoration: none;
+		font-size: 0.9rem;
+		transition: color 0.2s;
+	}
+
+	.footer-links a:hover {
+		color: #008080;
+	}
+
+	.footer-contact {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.footer-contact li {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.contact-icon {
+		font-size: 1rem;
+		filter: hue-rotate(180deg) saturate(1.2);
+	}
+
+	.footer-contact a {
+		color: #666;
+		text-decoration: none;
+		font-size: 0.9rem;
+		transition: color 0.2s;
+	}
+
+	.footer-contact a:hover {
+		color: #008080;
+	}
+
+	.footer-bottom {
+		border-top: 1px solid #e5e5e5;
+		background: #fafafa;
+		padding: 1.5rem 2rem;
+	}
+
+	.footer-bottom-content {
+		max-width: 1400px;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.copyright,
+	.disclaimer {
+		font-size: 0.85rem;
+		color: #666;
+		margin: 0;
+	}
+
+	@media (max-width: 1024px) {
+		.footer-container {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 2rem;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.footer-container {
+			grid-template-columns: 1fr;
+			padding: 2rem 1.5rem;
+			gap: 2rem;
+		}
+
+		.footer-bottom {
+			padding: 1.5rem 1.5rem;
+		}
+
+		.footer-bottom-content {
+			flex-direction: column;
+			text-align: center;
+		}
+	}
+</style>
+

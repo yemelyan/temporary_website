@@ -1,0 +1,177 @@
+---
+---
+
+<section class="hero">
+	<div class="hero-content">
+		<div class="hero-banner">IMPETUS Interreg Europe Pilot</div>
+		<h1 class="hero-title">Riga Temporary Use Competence Center</h1>
+		<p class="hero-subtitle">
+			Opening doors to new opportunities. We help Riga activate empty buildings and land for community benefit while long-term plans are prepared.
+		</p>
+		<div class="hero-buttons">
+			<button class="btn btn-primary">
+				<span class="btn-icon">👥</span>
+				Join the Stakeholder Loop
+			</button>
+			<button class="btn btn-secondary">
+				<span class="btn-icon">📄</span>
+				Open Documents Library
+			</button>
+		</div>
+	</div>
+	<div class="hero-pattern"></div>
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		background: linear-gradient(135deg, #008080 0%, #006666 100%);
+		min-height: 600px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 8rem 2rem 4rem;
+		overflow: hidden;
+		margin-top: 80px; /* Account for fixed navbar */
+	}
+
+	.hero-pattern {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		opacity: 0.1;
+		background-image: 
+			radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+			radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+			linear-gradient(45deg, transparent 48%, rgba(255, 255, 255, 0.1) 49%, rgba(255, 255, 255, 0.1) 51%, transparent 52%);
+		background-size: 60px 60px, 60px 60px, 40px 40px;
+		background-position: 0 0, 30px 30px, 0 0;
+		pointer-events: none;
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 1;
+		max-width: 900px;
+		text-align: center;
+		color: white;
+	}
+
+	.hero-banner {
+		display: inline-block;
+		background: rgba(255, 255, 255, 0.2);
+		padding: 0.5rem 1.5rem;
+		border-radius: 20px;
+		font-size: 0.85rem;
+		font-weight: 500;
+		margin-bottom: 2rem;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+
+	.hero-title {
+		font-size: 3.5rem;
+		font-weight: 700;
+		margin-bottom: 1.5rem;
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+	}
+
+	.hero-subtitle {
+		font-size: 1.25rem;
+		font-weight: 400;
+		margin-bottom: 3rem;
+		line-height: 1.6;
+		max-width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+		opacity: 0.95;
+	}
+
+	.hero-buttons {
+		display: flex;
+		gap: 1.5rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.btn {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 1rem 2rem;
+		font-size: 1rem;
+		font-weight: 600;
+		border: none;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		font-family: 'Inter', sans-serif;
+		text-decoration: none;
+	}
+
+	.btn-primary {
+		background: #008080;
+		color: white;
+	}
+
+	.btn-primary:hover {
+		background: #006666;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	}
+
+	.btn-secondary {
+		background: white;
+		color: #008080;
+		border: 2px solid #008080;
+	}
+
+	.btn-secondary:hover {
+		background: #f0f0f0;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	}
+
+	.btn-icon {
+		font-size: 1.2rem;
+	}
+
+	@media (max-width: 768px) {
+		.hero {
+			min-height: 500px;
+			padding: 6rem 1.5rem 3rem;
+		}
+
+		.hero-title {
+			font-size: 2.5rem;
+		}
+
+		.hero-subtitle {
+			font-size: 1.1rem;
+		}
+
+		.hero-buttons {
+			flex-direction: column;
+			width: 100%;
+		}
+
+		.btn {
+			width: 100%;
+			justify-content: center;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.hero-title {
+			font-size: 2rem;
+		}
+
+		.hero-subtitle {
+			font-size: 1rem;
+		}
+	}
+</style>
+

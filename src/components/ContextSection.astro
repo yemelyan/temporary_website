@@ -1,0 +1,188 @@
+---
+---
+
+<section class="context-section">
+	<div class="context-overlay"></div>
+	<div class="context-container">
+		<div class="context-column">
+			<h2 class="context-headline">Riga's Center is Silent.</h2>
+			<p class="context-subtext">
+				500+ abandoned buildings. ~23% commercial vacancy. For a decade, empty windows have been the city's unofficial visiting card.
+			</p>
+		</div>
+		<div class="context-column">
+			<h3 class="archive-title">The Evidence</h3>
+			<ul class="news-archive">
+				<li class="archive-item">
+					<span class="archive-year">2016</span>
+					<span class="archive-text">Rīgas centrs izmirst (Civic Alert)</span>
+				</li>
+				<li class="archive-item">
+					<span class="archive-year">2023</span>
+					<span class="archive-text">Tukšie skatlogi – Rīgas vizītkarte (Media Report)</span>
+				</li>
+				<li class="archive-item archive-item-highlight">
+					<span class="archive-year">2025</span>
+					<span class="archive-text">23% Vacancy Rate confirmed in Historic Center (IMPETUS Audit)</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<style>
+	.context-section {
+		position: relative;
+		background-image: url('/riga-context.jpg');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		color: white;
+		padding: 6rem 2rem;
+		min-height: 500px;
+	}
+
+	.context-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(
+			to right,
+			#111827 0%,
+			rgba(17, 24, 39, 0.95) 50%,
+			rgba(17, 24, 39, 0.6) 100%
+		);
+		z-index: 1;
+	}
+
+	.context-container {
+		position: relative;
+		z-index: 2;
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 4rem;
+		align-items: start;
+	}
+
+	.context-column {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.context-headline {
+		font-size: 2.5rem;
+		font-weight: 700;
+		color: white;
+		margin: 0 0 1.5rem 0;
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+	}
+
+	.context-subtext {
+		font-size: 1.1rem;
+		color: rgba(255, 255, 255, 0.9);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.archive-title {
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: white;
+		margin: 0 0 2rem 0;
+	}
+
+	.news-archive {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		border-left: 2px solid rgba(255, 255, 255, 0.3);
+		padding-left: 2rem;
+	}
+
+	.archive-item {
+		padding-bottom: 1.5rem;
+		display: flex;
+		align-items: flex-start;
+		gap: 1rem;
+	}
+
+	.archive-item:last-child {
+		padding-bottom: 0;
+	}
+
+	.archive-item-highlight {
+		background: rgba(0, 128, 128, 0.15);
+		padding: 1rem;
+		border-radius: 4px;
+		margin-left: -2rem;
+		padding-left: 2rem;
+		border-left: 3px solid #008080;
+	}
+
+	.archive-year {
+		font-size: 1rem;
+		font-weight: 600;
+		color: #008080;
+		min-width: 60px;
+		flex-shrink: 0;
+	}
+
+	.archive-text {
+		font-size: 1rem;
+		color: rgba(255, 255, 255, 0.9);
+		line-height: 1.6;
+		flex: 1;
+	}
+
+	.archive-item-highlight .archive-text {
+		color: white;
+		font-weight: 500;
+	}
+
+	@media (max-width: 968px) {
+		.context-container {
+			grid-template-columns: 1fr;
+			gap: 3rem;
+		}
+
+		.context-section {
+			padding: 4rem 2rem;
+		}
+
+		.context-headline {
+			font-size: 2rem;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.context-section {
+			padding: 3rem 1.5rem;
+		}
+
+		.context-headline {
+			font-size: 1.75rem;
+		}
+
+		.context-subtext {
+			font-size: 1rem;
+		}
+
+		.archive-title {
+			font-size: 1.25rem;
+		}
+
+		.news-archive {
+			padding-left: 1.5rem;
+		}
+
+		.archive-item-highlight {
+			margin-left: -1.5rem;
+			padding-left: 1.5rem;
+		}
+	}
+</style>
