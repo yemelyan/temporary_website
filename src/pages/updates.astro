@@ -1,0 +1,346 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../keystatic.config';
+
+const reader = createReader(process.cwd(), keystaticConfig);
+
+let updates: any[] = [];
+try {
+	updates = await reader.collections.updates.all();
+} catch (error) {
+	console.error('Error loading updates:', error);
+}
+
+// Sort by publishedDate (newest first)
+const sortedUpdates = updates.sort((a: any, b: any) => {
+	const dateA = new Date(a.entry.publishedDate);
+	const dateB = new Date(b.entry.publishedDate);
+	return dateB.getTime() - dateA.getTime();
+});
+
+// Format date helper
+const formatDate = (dateString: string) => {
+	const date = new Date(dateString);
+	return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+};
+
+// Check if post has content
+const hasContent = (content: unknown) => {
+	if (!content) return false;
+	if (typeof content === 'object' && 'children' in content) {
+		const children = (content as { children?: unknown[] }).children;
+		return Array.isArray(children) && children.length > 0;
+	}
+	return false;
+};
+---
+
+<Layout title="Project Updates - Riga Temporary Use Competence Center">
+	<main class="updates-page">
+		<header class="updates-header">
+			<h1 class="updates-title">Project Updates</h1>
+			<p class="updates-subtitle">
+				Stay informed about the latest news and developments in the Riga Temporary Use Competence Center.
+			</p>
+		</header>
+
+		{sortedUpdates.length > 0 ? (
+			<section class="timeline-section">
+				<div class="timeline">
+					{sortedUpdates.map((update: any) => {
+						const slug = update.slug;
+						const hasContentValue = hasContent(update.entry.content);
+						const CardWrapper = hasContentValue ? 'a' : 'div';
+						const wrapperProps = hasContentValue ? { href: `/updates/${slug}` } : {};
+						
+						return (
+							<CardWrapper class="update-card" {...wrapperProps}>
+								<div class="update-date">
+									{formatDate(update.entry.publishedDate)}
+								</div>
+								<div class="update-content">
+									{update.entry.coverImage && (
+										<div class="update-image">
+											<img 
+												src={update.entry.coverImage} 
+												alt={update.entry.title}
+												loading="lazy"
+											/>
+										</div>
+									)}
+									<div class="update-text">
+										<h2 class="update-title">{update.entry.title}</h2>
+										<p class="update-summary">{update.entry.summary}</p>
+										{hasContentValue && (
+											<span class="read-more">
+												Read More
+												<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+												</svg>
+											</span>
+										)}
+									</div>
+								</div>
+							</CardWrapper>
+						);
+					})}
+				</div>
+			</section>
+		) : (
+			<section class="empty-state">
+				<div class="empty-content">
+					<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="empty-icon">
+						<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						<polyline points="14 2 14 8 20 8" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						<line x1="16" y1="13" x2="8" y2="13" stroke="#999" stroke-width="2" stroke-linecap="round"/>
+						<line x1="16" y1="17" x2="8" y2="17" stroke="#999" stroke-width="2" stroke-linecap="round"/>
+					</svg>
+					<h2 class="empty-title">No updates yet</h2>
+					<p class="empty-message">
+						Visit <a href="/keystatic" class="empty-link">/keystatic</a> to add one!
+					</p>
+				</div>
+			</section>
+		)}
+	</main>
+</Layout>
+
+<style>
+	.updates-page {
+		padding: 8rem 2rem 4rem;
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+	/* Header */
+	.updates-header {
+		text-align: center;
+		margin-bottom: 4rem;
+	}
+
+	.updates-title {
+		font-size: 3rem;
+		font-weight: 700;
+		color: #333;
+		margin-bottom: 1rem;
+	}
+
+	.updates-subtitle {
+		font-size: 1.25rem;
+		color: #666;
+		line-height: 1.6;
+	}
+
+	/* Timeline Section */
+	.timeline-section {
+		margin-top: 3rem;
+	}
+
+	.timeline {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		position: relative;
+		padding-left: 2rem;
+	}
+
+	.timeline::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 2px;
+		background: linear-gradient(to bottom, #e5e5e5, #f0f0f0);
+	}
+
+	.update-card {
+		position: relative;
+		background: white;
+		border: 1px solid #e5e5e5;
+		border-radius: 12px;
+		padding: 2rem;
+		transition: all 0.3s ease;
+		text-decoration: none;
+		color: inherit;
+		display: block;
+		margin-left: 2rem;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+	}
+
+	.update-card::before {
+		content: '';
+		position: absolute;
+		left: -2.5rem;
+		top: 2.5rem;
+		width: 12px;
+		height: 12px;
+		background: #008080;
+		border-radius: 50%;
+		border: 3px solid white;
+		box-shadow: 0 0 0 2px #008080;
+		z-index: 1;
+	}
+
+	.update-card:hover {
+		border-color: #008080;
+		box-shadow: 0 4px 12px rgba(0, 128, 128, 0.15);
+		transform: translateX(4px);
+	}
+
+	.update-date {
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: #008080;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		margin-bottom: 1rem;
+	}
+
+	.update-content {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.update-image {
+		width: 100%;
+		height: 200px;
+		border-radius: 8px;
+		overflow: hidden;
+		background: #f5f5f5;
+	}
+
+	.update-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.update-text {
+		flex: 1;
+	}
+
+	.update-title {
+		font-size: 1.75rem;
+		font-weight: 700;
+		color: #333;
+		margin: 0 0 1rem 0;
+		line-height: 1.3;
+	}
+
+	.update-summary {
+		font-size: 1.1rem;
+		color: #666;
+		line-height: 1.7;
+		margin: 0 0 1rem 0;
+	}
+
+	.read-more {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: #008080;
+		margin-top: 0.5rem;
+		transition: gap 0.2s;
+	}
+
+	.update-card:hover .read-more {
+		gap: 0.75rem;
+	}
+
+	.read-more svg {
+		width: 16px;
+		height: 16px;
+	}
+
+	/* Empty State */
+	.empty-state {
+		margin-top: 4rem;
+		padding: 4rem 2rem;
+		text-align: center;
+	}
+
+	.empty-content {
+		max-width: 400px;
+		margin: 0 auto;
+	}
+
+	.empty-icon {
+		width: 64px;
+		height: 64px;
+		margin: 0 auto 1.5rem;
+		opacity: 0.5;
+	}
+
+	.empty-title {
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: #666;
+		margin: 0 0 1rem 0;
+	}
+
+	.empty-message {
+		font-size: 1.1rem;
+		color: #999;
+		margin: 0;
+		line-height: 1.6;
+	}
+
+	.empty-link {
+		color: #008080;
+		text-decoration: none;
+		font-weight: 600;
+		transition: color 0.2s;
+	}
+
+	.empty-link:hover {
+		color: #006666;
+		text-decoration: underline;
+	}
+
+	/* Responsive Design */
+	@media (max-width: 768px) {
+		.updates-page {
+			padding: 6rem 1.5rem 3rem;
+		}
+
+		.updates-title {
+			font-size: 2rem;
+		}
+
+		.updates-subtitle {
+			font-size: 1.1rem;
+		}
+
+		.timeline {
+			padding-left: 1.5rem;
+		}
+
+		.update-card {
+			margin-left: 1.5rem;
+			padding: 1.5rem;
+		}
+
+		.update-card::before {
+			left: -2rem;
+			width: 10px;
+			height: 10px;
+		}
+
+		.update-title {
+			font-size: 1.5rem;
+		}
+
+		.update-summary {
+			font-size: 1rem;
+		}
+
+		.update-image {
+			height: 180px;
+		}
+	}
+</style>
